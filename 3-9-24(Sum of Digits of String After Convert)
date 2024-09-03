@@ -1,0 +1,26 @@
+// https://leetcode.com/problems/sum-of-digits-of-string-after-convert/?envType=daily-question&envId=2024-09-03
+
+class Solution {
+public:
+    int getLucky(string s, int k) {
+        string numStr = "";
+        
+        // Step 1: Convert each character to its corresponding number and concatenate them
+        for (char c : s) {
+            int value = c - 'a' + 1;
+            numStr += to_string(value);
+        }
+        
+        // Step 2: Perform the sum of digits k times
+        while (k--) {
+            int sum = 0;
+            for (char digit : numStr) {
+                sum += digit - '0';
+            }
+            numStr = to_string(sum);
+        }
+        
+        // The final result after k transformations
+        return stoi(numStr);
+    }
+};
